@@ -14,7 +14,7 @@ jobs:
       - name: Mark as Done
         uses: actions/github-script@v3
         # if ticketed and the body contains either "closing" or "fixed", mark as done. 
-        if: ${{ contains(github.event.issue.labels.*.name, 'ticketed') && ( contains(github.event.comment.body, 'Closing') || contains(github.event.comment.body, 'Fixed')}} 
+        if: ${{ contains(github.event.issue.labels.*.name, 'ticketed') && ( contains(github.event.comment.body, 'Closing') || contains(github.event.comment.body, 'Fixed') ) }} 
         with:
           script: |
            github.issues.addLabels({
