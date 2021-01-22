@@ -12,11 +12,11 @@ jobs:
 
     steps:
       - name: DebugEcho
-        run: echo "Body ${{ github.event.issue.body }}"
+        run: echo "Body ${{ github.event.issue }}"
       - name: Label as Ticketed
         uses: actions/github-script@v3
         # if not ticketed already and the text contains "Ticketed"
-        if: ${{ contains(github.event.issue.body, 'Ticketed') }} 
+        if: ${{ !contains(github.event.issue.labels.*.name, 'ticketed') && contains(github.event.issue.body, 'Ticketed') }} 
         with:
           debug: true
           script: |
