@@ -3,18 +3,18 @@ name: CI
 on:
   issue_comment:
     types: [created]
+    if: ${{ !github.event.issue.pull_request }} && ( github.actor == 'lleadbet' || github.actor == 'jbulava' ) 
 
 jobs:
   label_issue:
     # if an issue AND either Jon or Lucas comment
-    if: ${{ !github.event.issue.pull_request }} && ( github.actor == 'lleadbet' || github.actor == 'jbulava' ) 
     runs-on: ubuntu-latest
 
     steps:
       - name: Label as Ticketed
         uses: actions/github-script@v3
         # if not ticketed already and the text contains "Ticketed"
-        if: ${{ !contains(github.event.issue.labels.*.name, 'ticketed') && contains(github.event.issue.body, 'Ticketed') }} 
+        if: ${{ contains(github.event.issue.body, 'Ticketed') }} 
         with:
           debug: true
           script: |
