@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: DebugEcho
         env:
-          GITHUB_CONTEXT: ${{ toJSON(github.event.issue) }}
+          GITHUB_CONTEXT: ${{ toJSON(github.event) }}
         run: echo "$GITHUB_CONTEXT"
       - name: Label as Ticketed
         uses: actions/github-script@v3
