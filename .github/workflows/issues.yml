@@ -5,9 +5,9 @@ on:
     types: [created]
 
 jobs:
-  if: ${{ !github.event.issue.pull_request }} && ( github.actor == 'lleadbet' || github.actor == 'jbulava' ) }}
   label_issue:
     # if an issue AND either Jon or Lucas comment
+    if: ${{ !github.event.issue.pull_request && ( github.actor == 'lleadbet' || github.actor == 'jbulava' ) }}
     runs-on: ubuntu-latest
 
     steps:
